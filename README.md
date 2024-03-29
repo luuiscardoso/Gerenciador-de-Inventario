@@ -1,5 +1,7 @@
 # Gerenciador de Inventário 
 
+![home](https://github.com/luuiscardoso/Gerenciador-de-Inventario/assets/112897238/7e4cb605-7ac2-4bc1-952f-9e30fa6cd7e0)
+
 ## Sobre o projeto
 
 O sistema é uma aplicação web em ASP.NET Core com o intuito de proporcionar ao usuário a possibilidade de controlar informações sobre os produtos e usuários. Com o sistema, você pode realizar o seu cadastro, fazer o login e acessar várias funcionalidades, como o cadastro, edição e remoção de produtos e usuários, além de determinar quais usuários terão perfil de admin ou não. Além disso, a aplicação oferece a opção de redefinição de senha a partir do e-mail caso você seja um pouco esquecido 😃. Para o mecanismo de cadastro e login, foi implementando senhas Hash para garantir a privacidade da informação, bem como o uso de Sessões e Cookies para armazenar o estado da aplicação
