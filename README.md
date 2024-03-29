@@ -46,5 +46,8 @@ Contribuições são bem-vindas! Se você quiser contribuir para este projeto, s
 
 A próxima etapa do projeto é personalizar a experiência do usuário com Media Queries CSS, pois até o momento o projeto tem um suporte melhor em Desktops. Se sua experiência não foi como esperado, não se preocupe, a responsividade está em desenvolvimento.  
 
+## Considerações finais
+Em primeiro momento deixei todas as contas novas cadastradas como perfil de admin para poderem testar a funcionalidade dos usuários. 
+
 
 
