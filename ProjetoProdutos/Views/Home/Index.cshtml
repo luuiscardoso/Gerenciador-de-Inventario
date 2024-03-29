@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Página Inicial";
+}
+
+<div class="container-home">
+    <h1 class="display-4">Seja Bem-vindo!</h1>
+    <p>Navegue pelo cabeçalho para acessar as funcionalidades.</p>
+
+    <div class="animacao-home">
+        <img src="~/css/hello-animate.svg" alt="boasVindas"/>
+    </div>
+</div>
+
+<div id="modalAviso" class="modal fade modal-all" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Aviso</h5>
+            </div>
+            <div class="modal-body">
+                <p id="mensagem"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-fechar-modal" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@functions {
+    public string SerializeToJson(object value)
+    {
+        return System.Text.Json.JsonSerializer.Serialize(value);
+    }
+}
+
+<script>
+    var erro = @Html.Raw(SerializeToJson(TempData["Erro"]));
+    var sucesso = @Html.Raw(SerializeToJson(TempData["Sucesso"]));
+</script>

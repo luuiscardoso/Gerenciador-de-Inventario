@@ -1,0 +1,79 @@
+﻿@model mdlCadastroUsuario;
+@{
+    Layout = "_LayoutDeslogado";
+    ViewBag.BodyClass = "login-body";
+    ViewData["Title"] = "Criar usuários";
+}
+
+<div class="container-adicionar">
+    <div class="text-center">
+        <h1 class="display-4 titulo">Cadastre-se</h1>
+        <img src="~/css/add-notes-animate.svg" alt="adicionando usuário" />
+    </div>
+
+    <form asp-controller="Login" asp-action="Cadastrar" method="post" class="form-adicionar">
+        <div class="form-group">
+            <label for="nome">Nome</label>
+            <input type="text" asp-for="Nome" class="form-control" placeholder="Digite seu nome de usuário">
+            <span asp-validation-for="Nome" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="qtd">E-mail</label>
+            <input type="text" asp-for="Email" class="form-control" placeholder="Digite seu e-mail">
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="ncategoria">Login</label>
+            <input type="text" asp-for="Login" class="form-control" placeholder="Digite um login">
+            <span asp-validation-for="Login" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="ncategoria">Senha</label>
+            <input type="password" asp-for="Senha" class="form-control" placeholder="Digite uma senha">
+            <span asp-validation-for="Senha" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="ncategoria">Confirmação de senha</label>
+            <input type="password" asp-for="ConfirmaSenha" class="form-control" placeholder="Repita a senha">
+            <span asp-validation-for="ConfirmaSenha" class="text-danger"></span>
+        </div>
+
+        <div class="mt-2">
+            <button type="submit" class="btn btn-custom">Adicionar</button>
+            <a class="btn btn-custom" role="button" asp-controller="Login" asp-action="Index">Voltar</a>
+        </div>
+
+    </form>
+</div>
+
+<div id="modalAviso" class="modal fade modal-all" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Aviso</h5>
+            </div>
+            <div class="modal-body">
+                <p id="mensagem"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-fechar-modal" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@functions {
+    public string SerializeToJson(object value)
+    {
+        return System.Text.Json.JsonSerializer.Serialize(value);
+    }
+}
+
+<script>
+    var erro = @Html.Raw(SerializeToJson(TempData["Erro"]));
+    var sucesso = @Html.Raw(SerializeToJson(TempData["Sucesso"]));
+</script>

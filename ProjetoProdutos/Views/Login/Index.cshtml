@@ -1,0 +1,67 @@
+﻿@model mdlLogin;
+@{
+    Layout = "_LayoutDeslogado";
+    ViewData["Title"] = "Login";
+    ViewBag.BodyClass = "login-body";
+}
+
+<div class="container-login">
+
+    <form asp-controller="Login" asp-action="Entrar" method="post" class="form-login">
+
+        <p class="text-form1">Bem-vindo ao sistema de estoque! Já possui uma conta? Faça o login.</p>
+
+        <div class="mb-3 i-custom">
+            <input asp-for="Login" type="text" class="form-control" id="login" placeholder="Login">
+            <span asp-validation-for="Login" class="text-danger"></span>
+
+            <input asp-for="Senha" type="password" class="form-control" id="senha" placeholder="Senha">
+            <span asp-validation-for="Senha" class="text-danger"></span>
+
+            <button type="submit" class="btn btn-dark btn-custom">Entrar</button>
+        </div>
+        
+        <div class="texto-botao-cad">
+            <p class="text-form2">Se não, cadastre-se agora mesmo.</p>
+
+            <button type="button" class="btn btn-dark btn-custom" onclick="location.href='@Url.Action("Cadastrar", "Login")'">Cadastrar</button>
+        </div>
+
+        <div class="mb-4 text-sm mx-auto redefinir-senha">
+            <a asp-controller="Login" asp-action="RedefinirSenha" class="btn-redefinir">Redefinir minha senha</a>
+        </div>
+
+    </form>
+
+    <div class="animacao" id="animacao">
+        <img src="~/css/pessoasEstoque.svg" alt="pessoas-contando-estoque" />
+    </div>
+</div>
+
+<div id="modalAviso" class="modal fade modal-all" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Aviso</h5>
+            </div>
+            <div class="modal-body">
+                <p id="mensagem"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-fechar-modal" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@functions {
+    public string SerializeToJson(object value)
+    {
+        return System.Text.Json.JsonSerializer.Serialize(value);
+    }
+}
+
+<script>
+    var erro = @Html.Raw(SerializeToJson(TempData["Erro"]));
+    var sucesso = @Html.Raw(SerializeToJson(TempData["Sucesso"]));
+</script>

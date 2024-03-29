@@ -1,0 +1,84 @@
+﻿@using ProjetoProdutos.Enums;
+@model mdlUsuario;
+@{
+    ViewBag.MainContentClass = "main-custom";
+    ViewData["Title"] = "Criar usuários";
+}
+
+<div class="container-adicionar">
+    <div class="text-center">
+        <h1 class="display-4 titulo">Cadastrar usuário</h1>
+        <img src="~/css/add-notes-animate.svg" alt="adicionando usuário" />
+    </div>
+
+    <form asp-controller="Usuario" asp-action="Criar" method="post" class="form-adicionar">
+        <div class="form-group">
+            <label for="nome">Nome</label>
+            <input type="text" asp-for="Nome" class="form-control" placeholder="Digite o nome do usuário">
+            <span asp-validation-for="Nome" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="qtd">E-mail</label>
+            <input type="text" asp-for="Email" class="form-control" placeholder="Digite o e-mail do usuário">
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="ncategoria">Login</label>
+            <input type="text" asp-for="Login" class="form-control" placeholder="Digite o login do usuário">
+            <span asp-validation-for="Login" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="ncategoria">Perfil</label>
+            <select class="form-control" asp-for="TipoPerfil">
+                <option value="">Selecione</option>
+                <option value="@PerfilEnum.Admin">Administrador</option>
+                <option value="@PerfilEnum.Padrao">Padrão</option>
+            </select>
+            <span asp-validation-for="TipoPerfil" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="ncategoria">Senha</label>
+            <input type="password" asp-for="Senha" class="form-control" placeholder="Digite a senha do usuário">
+            <span asp-validation-for="Senha" class="text-danger"></span>
+        </div>
+
+        <div class="mt-2">
+            <button type="submit" class="btn btn-custom">Adicionar</button>
+            <a class="btn btn-custom" role="button" asp-controller="Usuario" asp-action="Index">Voltar</a>
+        </div>
+
+    </form>
+</div>
+
+<div id="modalAviso" class="modal fade modal-all" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Aviso</h5>
+            </div>
+            <div class="modal-body">
+                <p id="mensagem"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-fechar-modal" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@functions {
+    public string SerializeToJson(object value)
+    {
+        return System.Text.Json.JsonSerializer.Serialize(value);
+    }
+}
+
+<script>
+    var erro = @Html.Raw(SerializeToJson(TempData["Erro"]));
+    var sucesso = @Html.Raw(SerializeToJson(TempData["Sucesso"]));
+</script>
+

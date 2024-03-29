@@ -1,0 +1,228 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+    position: relative;
+}
+
+body {
+    width: 100%;
+    margin-bottom: 80px;
+}
+
+body, html{
+    height: 100% !important;
+    
+}
+
+.login-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+main{
+    height: 100%;
+}
+
+.titulo{
+    margin-bottom: 10px;
+}
+
+
+
+.container-master-login {
+    height: 70%;
+    width: 90%;
+}
+
+.container-login, .container-editar, .container-adicionar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100%;
+}
+
+.form-login{
+    height: 80%;
+    width: 23%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 13px;
+    box-shadow: 0 0px 19px -6px grey;
+}
+
+.form-redefinir {
+    height: 60%;
+    width: 23%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: -50px;
+    border-radius: 13px;
+    box-shadow: 0 0px 19px -6px grey;
+}
+
+.text-form1{
+    text-align: center;
+}
+
+.i-custom{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 5px;
+    margin-top: 20px;
+}
+
+.texto-botao-cad{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.btn-custom{
+    color: white;
+    background-color: #F25835;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    opacity: .9;
+}
+
+.btn-custom:hover, .btn-custom:hover {
+    background-color: #F25835;
+    opacity: 1;
+    transition: .8s ease;
+}
+
+.btn-redefinir{
+    font-weight: bold;
+    color: black;
+}
+
+.btn-redefinir:hover {
+    color: black;
+    opacity: .7;
+}
+
+#login, #senha {
+    outline-color: red;
+}
+
+.animacao{
+    width: 35vw;
+}
+
+.container-home {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 80vh;
+}
+
+.animacao-home{
+    margin-top: 3em;
+    width: 25vw;
+}
+
+.btnAdicionar{
+    margin-top: 15px;
+}
+
+.container-produtos, .container-usuarios{
+    height: 98%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.produtos, .usuarios {
+    padding: .5em;
+    width: 70%;
+    border-radius: 13px;
+    box-shadow: 0 0px 19px -6px grey;
+}
+
+.main-custom{
+    height: 85vh;
+}
+
+.btn-add{
+    background-color: #F25835;
+    border: none;
+    border-radius: 5px;
+    padding: .5em;
+    width: 2.5em;
+    text-align: center;
+    margin: .8em; 
+    transition: transform 0.3s ease;
+}
+
+.btn-add:hover {
+    transform: scale(1.1);
+}
+
+.btn-edit-delete {
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    text-align: center;
+    margin-right: .8em;
+    transition: transform 0.3s ease;
+}
+
+.btn-edit-delete:hover {
+    transform: scale(1.1);
+}
+
+.container-adicionar > div:first-child, .container-editar > div:first-child {
+    width: 27%;
+}
+
+.form-editar, .form-adicionar {
+    height: 60%;
+    width: 23%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: -50px;
+    border-radius: 13px;
+    box-shadow: 0 0px 19px -6px grey;
+}
+
+#teste{
+    display: flex;
+    justify-content: end;
+}
+
+
+
+
+
+
+
+

@@ -1,0 +1,107 @@
+﻿@model List<mdlProduto>;
+@{
+    ViewBag.MainContentClass = "main-custom";
+    ViewData["Title"] = "Lista de produtos";
+}
+
+<div class="container-produtos">
+
+    <div class="produtos">
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start btnAdicionar">
+            <a class="btn-add" role="button" asp-controller="Produto" asp-action="Criar"><i class="fa-solid fa-plus" style="color: #FFFFFF;"></i></a>
+        </div>
+
+        <h1 class="display-4 titulo text-center">Produtos</h1>
+
+        <div>
+            <table class="table table-hover table-lg" id="tableProds">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Quantidade</th>
+                        <th scope="col">Categoria</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if(Model != null && Model.Any())
+                    {
+                        foreach(mdlProduto prod in Model)
+                        {
+                            <tr>
+                                <th scope="row">@prod.Id</th>
+                                <td>@prod.Nome</td>
+                                <td>@prod.Qtd</td>
+                                <td>@prod.Categoria</td>
+                                <td class="text-center">
+                                    <div class="btn-group" role="group">
+                                        <a role="button" class="btn btn-edit btn-edit-delete" asp-route-id="@prod.Id" asp-controller="Produto" asp-action="Editar"><i class="fa-solid fa-pen-to-square" style="color: #f25835;"></i></a>
+                                        <a role="button" class="btn btn-apagar btn-edit-delete" asp-route-id="@prod.Id" asp-controller="Produto" asp-action="ExcluirConfirmacao"><i class="fa-solid fa-trash" style="color: #f25835;"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    @* else
+                    {
+                        <tr class="odd"> <td valign="top" colspan="5">Nenhum produto encontrado</td> </tr>
+                    } *@
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</div>
+
+<div id="modalAviso" class="modal fade modal-all" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Aviso</h5>
+            </div>
+            <div class="modal-body">
+                <p id="mensagem"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-fechar-modal" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modalExclusao" class="modal fade modal-all" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Aviso exclusao</h5>
+            </div>
+            <div class="modal-body">
+                <p id="mensagemExclusao"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-confirma-exclusao-produto" data-dismiss="modal">Sim</button>
+                <button type="button" class="btn btn-secondary btn-fechar-modal" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@functions {
+    public string SerializeToJson(object value)
+    {
+        return System.Text.Json.JsonSerializer.Serialize(value);
+    }
+}
+
+<script>
+    var idProduto = @Html.Raw(SerializeToJson(TempData["ProdutoID"]));
+    var exclusao = @Html.Raw(SerializeToJson(TempData["Exclusao"]));
+    var erro = @Html.Raw(SerializeToJson(TempData["Erro"]));
+    var sucesso = @Html.Raw(SerializeToJson(TempData["Sucesso"]));
+</script>
+
+

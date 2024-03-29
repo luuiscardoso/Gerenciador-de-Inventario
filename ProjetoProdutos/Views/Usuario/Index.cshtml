@@ -1,0 +1,106 @@
+﻿@model List<mdlUsuario>;
+@{
+    ViewBag.MainContentClass = "main-custom";
+    ViewData["Title"] = "Lista de usuários";
+}
+
+<div class="container-usuarios">
+
+    <div class="usuarios">
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start btnAdicionar">
+            <a class="btn-add" role="button" asp-controller="Usuario" asp-action="Criar"><i class="fa-solid fa-plus" style="color: #FFFFFF;"></i></a>
+        </div>
+
+        <h1 class="display-4 titulo text-center">Usuários</h1>
+
+        <div>
+            <table class="table table-hover table-lg" id="tableUsuarios">
+                <thead>
+                    <tr>
+                        @* <th scope="col">#</th> *@
+                        <th scope="col">Nome</th>
+                        <th scope="col">Login</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Perfil</th>
+                        <th scope="col">Data de cadastro</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        foreach (mdlUsuario usuario in Model)
+                        {
+                            <tr>
+                                @* <th scope="row">@usuario.id</th> *@
+                                <td>@usuario.Nome</td>
+                                <td>@usuario.Login</td>
+                                <td>@usuario.Email</td>
+                                <td>@(usuario.TipoPerfil == ProjetoProdutos.Enums.PerfilEnum.Admin ? "Admin" : "Padrão")</td>
+                                <td>@usuario.DataCadastro</td>
+                                <td class="text-center">
+                                    <div class="btn-group" role="group">
+                                        <a role="button" class="btn btn-edit btn-edit-delete" asp-route-id="@usuario.id" asp-controller="Usuario" asp-action="Editar"><i class="fa-solid fa-pen-to-square" style="color: #f25835;"></i></a>
+                                        <a role="button" class="btn btn-apagar btn-edit-delete ms-2" asp-route-id="@usuario.id" asp-controller="Usuario" asp-action="ExcluirConfirmacao"><i class="fa-solid fa-trash" style="color: #f25835;"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<div id="modalAviso" class="modal fade modal-all" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Aviso</h5>
+            </div>
+            <div class="modal-body">
+                <p id="mensagem"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-fechar-modal" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modalExclusao" class="modal fade modal-all" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Aviso exclusao</h5>
+            </div>
+            <div class="modal-body">
+                <p id="mensagemExclusao"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-confirma-exclusao-usuario" data-dismiss="modal">Sim</button>
+                <button type="button" class="btn btn-secondary btn-fechar-modal" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@functions {
+    public string SerializeToJson(object value)
+    {
+        return System.Text.Json.JsonSerializer.Serialize(value);
+    }
+}
+
+<script>
+    var erro = @Html.Raw(SerializeToJson(TempData["Erro"]));
+    var sucesso = @Html.Raw(SerializeToJson(TempData["Sucesso"]));
+    var idUsuario = @Html.Raw(SerializeToJson(TempData["UsuarioID"]));
+    var exclusao = @Html.Raw(SerializeToJson(TempData["Exclusao"]));
+</script>
+
+
+

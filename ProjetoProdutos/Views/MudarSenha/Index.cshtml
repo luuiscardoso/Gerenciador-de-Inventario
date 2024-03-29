@@ -1,0 +1,59 @@
+﻿@using ProjetoProdutos.Enums;
+@model mdlAlteracaoSenha;
+@{
+    ViewBag.MainContentClass = "main-custom";
+    ViewData["Title"] = "Alteração de senha";
+}
+
+<div class="container-editar">
+    <div class="text-center">
+        <h1 class="display-4 titulo">Alterar senha</h1>
+        <img src="~/css/reset-password-animate.svg" alt="mudando a senha"/>
+    </div>
+
+    <form asp-controller="MudarSenha" asp-action="Alterar" class="form-editar">
+
+        <div class="form-group">
+            <label for="nome">Senha atual</label>
+            <input type="text" asp-for="SenhaAtual" class="form-control" placeholder="Digite a senha recebida">
+            <span asp-validation-for="SenhaAtual" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="nome">Nova Senha</label>
+            <input type="text" asp-for="NovaSenha" class="form-control" placeholder="Digite uma nova senha">
+            <span asp-validation-for="NovaSenha" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="nome">Confirmar senha</label>
+            <input type="text" asp-for="SenhaConfirmacao" class="form-control" placeholder="Digite novamente a nova senha">
+            <span asp-validation-for="SenhaConfirmacao" class="text-danger"></span>
+        </div>
+
+
+        <div>
+            <button type="submit" class="btn btn-custom">Alterar</button>
+            <a class="btn btn-custom" role="button" asp-controller="Login" asp-action="Index">Voltar</a>
+        </div>
+
+    </form>
+</div>
+
+
+<div id="modalErro" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Aviso</h5>
+            </div>
+            <div class="modal-body">
+                <p id="mensagemErro"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-fechar-modal" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+

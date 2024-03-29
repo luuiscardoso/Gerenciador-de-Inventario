@@ -1,0 +1,45 @@
+﻿@model mdlProduto;
+@{
+    ViewBag.MainContentClass = "main-custom";
+    ViewData["Title"] = "Editar produtos";
+}
+
+<div class="container-editar">
+    <div class="text-center" >
+        <h1 class="display-4 titulo">Editar produto</h1>
+        <img src="~/css/editing-body-text-animate.svg" alt="mulher-editando" />
+    </div>
+
+    <form asp-controller="Produto" asp-action="Alterar" class="form-editar">
+
+        <input type="hidden" asp-for="Id" />
+
+        <div class="form-group">
+            <label for="nome">Nome</label>
+            <input type="text" asp-for="Nome" class="form-control" placeholder="Digite o nome do seu produto">
+            <span asp-validation-for="Nome" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="qtd">Quantidade</label>
+            <input type="number" asp-for="Qtd" class="form-control" placeholder="Digite a quantidade disponivel">
+            <span asp-validation-for="Qtd" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="ncategoria">Categoria</label>
+            <input type="text" asp-for="Categoria" class="form-control" placeholder="Digite a categoria do produto">
+            <span asp-validation-for="Categoria" class="text-danger"></span>
+        </div>
+
+        <div class="mt-2">
+            <button type="submit" class="btn btn-custom">Alterar</button>
+            <a class="btn btn-custom" role="button" asp-controller="Produto" asp-action="Index">Voltar</a>
+        </div>
+
+    </form>
+</div>
+
+
+
+
